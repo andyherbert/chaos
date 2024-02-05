@@ -14,8 +14,7 @@ use std::{error, fmt};
 static CHARACTERS: &[u8; 256] = include_bytes!("../gfx/bin/wizards/characters.bin");
 
 static STARTING_POSITIONS: &[&[(u8, u8)]; 7] = &[
-    // &[(1, 4), (13, 4)],
-    &[(1, 4), (3, 4)],
+    &[(1, 4), (13, 4)],
     &[(7, 1), (1, 8), (13, 8)],
     &[(1, 1), (13, 1), (1, 8), (13, 8)],
     &[(7, 0), (0, 3), (14, 3), (3, 9), (11, 9)],
