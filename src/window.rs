@@ -2,7 +2,7 @@ use crate::error::ChaosError;
 use crate::gfx::buffer::Buffer;
 use crate::gfx::color::Color;
 pub use minifb::Key;
-use minifb::{KeyRepeat, MouseButton, MouseMode, Scale, ScaleMode, Window as MiniFBWindow, WindowOptions};
+use minifb::{KeyRepeat, MouseButton, MouseMode, Scale, Window as MiniFBWindow, WindowOptions};
 use std::ops::RangeInclusive;
 use std::time::{Duration, Instant};
 
@@ -18,10 +18,9 @@ impl Window {
         let height = 192;
         let opts = WindowOptions {
             scale: Scale::X2,
-            scale_mode: ScaleMode::Center,
             ..WindowOptions::default()
         };
-        let mut win = MiniFBWindow::new(name, width + 8, height + 8, opts)?;
+        let mut win = MiniFBWindow::new(name, width, height, opts)?;
         win.limit_update_rate(Some(Duration::from_millis(1000 / 50)));
         let buf = Buffer::new(width / 8, height / 8);
         Ok(Self { win, buf })
@@ -46,7 +45,7 @@ impl Window {
 
     pub fn mouse_coords(&self) -> Option<(usize, usize)> {
         match self.win.get_mouse_pos(MouseMode::Discard) {
-            Some((x, y)) if x >= 4.0 && y >= 4.0 => Some(((x - 4.0) as usize / 8, (y - 4.0) as usize / 8)),
+            Some((x, y)) => Some((x as usize / 8, y as usize / 8)),
             _ => None,
         }
     }
