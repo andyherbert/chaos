@@ -1,6 +1,6 @@
 [package]
 name = "chaos"
-version = "0.0.2-alpha"
+version = "0.0.3-alpha"
 edition = "2021"
 authors = ["Andy Herbert <andy.herbert@gmail.com>"]
 description = "Chaos: The Battle of Wizards"
